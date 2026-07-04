@@ -64,6 +64,20 @@
   }
 }
 
+@layer components {
+  .btn-primario {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-terracota px-5 py-2.5 font-semibold text-marfil transition-colors duration-200 hover:bg-terracota-clara;
+  }
+
+  .btn-secundario {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-terracota/50 px-5 py-2.5 font-semibold text-terracota transition-colors duration-200 hover:bg-terracota/10;
+  }
+
+  .btn-secundario-oscuro {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-crema/40 px-5 py-2.5 font-semibold text-crema transition-colors duration-200 hover:bg-crema/10;
+  }
+}
+
 /* Aparición al hacer scroll (ver components/Reveal.jsx) */
 .reveal {
   opacity: 0;
