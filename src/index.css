@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/cabin';
+
+@theme {
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Cabin Variable', ui-sans-serif, system-ui, sans-serif;
+
+  /* Paleta "Nature Distilled": artesanal cálida, el arte es el protagonista */
+  --color-crema: #f5f0e1;
+  --color-marfil: #fffdf6;
+  --color-arena: #d4c4a8;
+  --color-terracota: #a85d3f;
+  --color-terracota-clara: #c67b5c;
+  --color-dorado: #d9a05b;
+  --color-oliva: #6b7b3c;
+  --color-tinta: #1c1917;
+  --color-tinta-suave: #292524;
+
+  --animate-girar-lento: girar-lento 120s linear infinite;
+  --animate-latir: latir 3.2s ease-in-out infinite;
+}
+
+@keyframes girar-lento {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes latir {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.85;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-crema font-sans text-tinta-suave antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-terracota;
+  }
+
+  ::selection {
+    @apply bg-terracota-clara/40;
+  }
+}
+
+/* Aparición al hacer scroll (ver components/Reveal.jsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-girar-lento,
+  .animate-latir {
+    animation: none;
+  }
+}
