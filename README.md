@@ -1,4 +1,4 @@
-# Desde un Punto
+# Todo comienza con un punto
 
 Galería de arte en **puntillismo estilo mandala** — obras originales hechas a mano, punto a punto.
 
@@ -15,14 +15,14 @@ npm run preview   # previsualizar el build
 
 ## Cómo editar el contenido
 
-- **Datos de contacto** (WhatsApp, email, redes, nombre de la artista):
+- **Datos de contacto** (WhatsApp, redes, nombre de la artista):
   `src/data/site.js` — los valores con ⚠️ son placeholders que hay que reemplazar.
 - **Obras del catálogo**: `src/data/obras.js` — cada obra tiene título, técnica,
   medidas, precio (S/), imagen y si es destacada (aparece en el carrusel de inicio).
-- **Imágenes de las obras**: van en `src/assets/obras/`. Mientras no haya fotos
-  reales, hay mandalas SVG generados como placeholder. Para usar fotos reales:
-  copiar el archivo (idealmente `.webp` o `.jpg` cuadrado, mínimo 800×800) a esa
-  carpeta y actualizar el `import` correspondiente en `src/data/obras.js`.
+- **Imágenes de las obras**: van en `src/assets/obras/`. Para agregar una:
+  copiar el archivo (idealmente `.webp`, `.jpg` o `.png` cuadrado, mínimo
+  800×800) a esa carpeta, importarlo en `src/data/obras.js` y añadir la entrada.
+  Las fotos se muestran recortadas al centro en formato cuadrado.
 
 ## Flujo de trabajo
 

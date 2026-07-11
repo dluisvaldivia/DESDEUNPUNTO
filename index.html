@@ -4,18 +4,40 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f5f0e1" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Metadatos del sitio (los que ve quien comparte la portada o la galería).
+         WhatsApp y las redes no ejecutan JavaScript: leen este HTML tal cual, así
+         que la vista previa tiene que estar escrita aquí y no ponerse desde React.
+         Al compartir una obra suelta el enlace es /obra/<id>/, una página propia
+         que genera scripts/generar-paginas-obras.mjs reemplazando este bloque por
+         los datos y la foto de esa obra. Si mueves los marcadores, actualiza el
+         script: falla el build si no los encuentra. -->
+    <!-- metadatos:inicio -->
+    <title>Todo comienza con un punto — Arte en Puntillismo</title>
     <meta
       name="description"
-      content="Desde un Punto — galería de arte en puntillismo. Mandalas pintados punto a punto, obras originales hechas a mano."
+      content="Todo comienza con un punto — galería de arte en puntillismo. Mandalas pintados punto a punto, obras originales hechas a mano."
     />
-    <meta property="og:title" content="Desde un Punto — Arte en Puntillismo" />
+    <link rel="canonical" href="https://dluisvaldivia.github.io/DESDEUNPUNTO/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Todo comienza con un punto" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:title" content="Todo comienza con un punto — Arte en Puntillismo" />
     <meta
       property="og:description"
       content="Mandalas pintados punto a punto. Obras originales hechas a mano."
     />
-    <meta property="og:type" content="website" />
-    <title>Desde un Punto — Arte en Puntillismo</title>
+    <meta property="og:url" content="https://dluisvaldivia.github.io/DESDEUNPUNTO/" />
+    <meta
+      property="og:image"
+      content="https://dluisvaldivia.github.io/DESDEUNPUNTO/og/sitio.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Tres mandalas en puntillismo hechos a mano" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- metadatos:fin -->
   </head>
   <body>
     <div id="root"></div>

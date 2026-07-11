@@ -1,8 +1,7 @@
-import { Mail } from 'lucide-react'
-import { sitio, enlaceWhatsApp, enlaceEmail } from '../data/site.js'
+import { sitio, enlaceWhatsApp } from '../data/site.js'
 import EncabezadoPagina from '../components/EncabezadoPagina.jsx'
 import Reveal from '../components/Reveal.jsx'
-import { IconoWhatsApp } from '../components/BotonWhatsApp.jsx'
+import MandalaWhatsApp from '../components/MandalaWhatsApp.jsx'
 import { IconoInstagram, IconoFacebook } from '../components/IconosSociales.jsx'
 
 export default function Contacto() {
@@ -14,27 +13,18 @@ export default function Contacto() {
 
       <section className="mx-auto max-w-3xl px-4 pb-24">
         <Reveal>
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-5">
             <a
               href={enlaceWhatsApp()}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3 rounded-2xl border border-arena/70 bg-marfil p-8 text-center transition-all duration-300 hover:border-terracota hover:shadow-lg hover:shadow-tinta/10"
+              className="group flex flex-col items-center gap-3 rounded-2xl border border-arena-oscuro bg-marfil p-8 text-center transition-all duration-300 hover:border-jade hover:shadow-lg hover:shadow-tinta/10"
             >
-              <IconoWhatsApp className="size-10 text-terracota" />
+              <MandalaWhatsApp className="size-28 transition-transform duration-500 group-hover:scale-105" />
               <span className="font-display text-2xl text-tinta">WhatsApp</span>
               <span className="text-sm text-tinta-suave/70">
                 La forma más rápida de recibir respuesta
               </span>
-            </a>
-
-            <a
-              href={enlaceEmail()}
-              className="flex flex-col items-center gap-3 rounded-2xl border border-arena/70 bg-marfil p-8 text-center transition-all duration-300 hover:border-terracota hover:shadow-lg hover:shadow-tinta/10"
-            >
-              <Mail className="size-10 text-terracota" />
-              <span className="font-display text-2xl text-tinta">Email</span>
-              <span className="text-sm break-all text-tinta-suave/70">{sitio.email}</span>
             </a>
           </div>
         </Reveal>
@@ -50,7 +40,7 @@ export default function Contacto() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="rounded-full border border-arena/80 p-3.5 text-tinta-suave transition-colors hover:border-terracota hover:text-terracota"
+                className="rounded-full border border-arena-oscuro p-3.5 text-tinta-suave transition-colors hover:border-magenta hover:text-magenta"
               >
                 <IconoInstagram className="size-6" />
               </a>
@@ -61,17 +51,12 @@ export default function Contacto() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="rounded-full border border-arena/80 p-3.5 text-tinta-suave transition-colors hover:border-terracota hover:text-terracota"
+                className="rounded-full border border-arena-oscuro p-3.5 text-tinta-suave transition-colors hover:border-magenta hover:text-magenta"
               >
                 <IconoFacebook className="size-6" />
               </a>
             ) : null}
           </div>
-
-          <p className="mx-auto mt-12 max-w-md text-tinta-suave/70">
-            ¿Tienes una idea en mente? También se hacen mandalas por encargo, en el tamaño y la
-            paleta de colores que quieras.
-          </p>
         </Reveal>
       </section>
     </>

@@ -4,7 +4,7 @@ import DivisorPuntos from '../components/DivisorPuntos.jsx'
 export default function NoEncontrada() {
   return (
     <section className="mx-auto flex max-w-2xl flex-col items-center px-4 py-28 text-center">
-      <p className="font-display text-7xl text-terracota">404</p>
+      <p className="titulo-puntos text-8xl text-magenta sm:text-9xl">404</p>
       <DivisorPuntos className="mt-6" />
       <h1 className="mt-6 text-3xl text-tinta">Esta página se salió del punto</h1>
       <p className="mt-4 text-lg text-tinta-suave/75">

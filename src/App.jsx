@@ -4,9 +4,9 @@ import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Inicio from './pages/Inicio.jsx'
 import Galeria from './pages/Galeria.jsx'
-import Productos from './pages/Productos.jsx'
 import SobreLaArtista from './pages/SobreLaArtista.jsx'
 import Contacto from './pages/Contacto.jsx'
+import ObraCompartida from './pages/ObraCompartida.jsx'
 import NoEncontrada from './pages/NoEncontrada.jsx'
 
 function VolverArriba() {
@@ -32,9 +32,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/galeria" element={<Galeria />} />
-          <Route path="/productos" element={<Productos />} />
           <Route path="/sobre-la-artista" element={<SobreLaArtista />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/obra/:id" element={<ObraCompartida />} />
           <Route path="*" element={<NoEncontrada />} />
         </Routes>
       </main>

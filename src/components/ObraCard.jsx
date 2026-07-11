@@ -1,27 +1,26 @@
-import { ZoomIn, Mail } from 'lucide-react'
+import { ZoomIn } from 'lucide-react'
 import { formatearPrecio } from '../data/obras.js'
-import { enlaceEmail } from '../data/site.js'
 import BotonWhatsApp from './BotonWhatsApp.jsx'
 
 export default function ObraCard({ obra, onVer, conPrecio = false, conBotones = false }) {
   return (
-    <article className="group overflow-hidden rounded-2xl border border-arena/70 bg-marfil shadow-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-tinta/10">
+    <article className="group overflow-hidden rounded-2xl border border-arena-oscuro bg-blanco shadow-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-tinta/10">
+      {/* Paspartú: la obra se monta entera sobre marfil, con aire alrededor.
+          Nunca object-cover — el encuadre lo decide la artista, no la grilla. */}
       <button
         type="button"
         onClick={onVer}
         aria-label={`Ver «${obra.titulo}» en grande`}
-        className="relative block w-full cursor-zoom-in overflow-hidden"
+        className="relative flex aspect-square w-full cursor-zoom-in items-center justify-center overflow-hidden border-b border-arena-oscuro bg-marfil p-6 sm:p-8"
       >
         <img
           src={obra.imagen}
           alt={obra.descripcion}
           loading="lazy"
-          className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+          className="h-full w-full object-contain drop-shadow-sm transition-transform duration-500 group-hover:scale-[1.03]"
         />
-        <span className="absolute inset-0 flex items-end justify-start bg-gradient-to-t from-tinta/60 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
-          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-crema">
-            <ZoomIn className="size-4" /> Ver de cerca
-          </span>
+        <span className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-full bg-tinta/85 px-3 py-1.5 text-xs font-semibold text-blanco opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+          <ZoomIn className="size-3.5" /> Ver de cerca
         </span>
       </button>
 
@@ -32,23 +31,16 @@ export default function ObraCard({ obra, onVer, conPrecio = false, conBotones = 
         </p>
 
         {conPrecio ? (
-          <p className="mt-3 text-lg font-bold text-terracota">{formatearPrecio(obra.precio)}</p>
+          <p className="mt-3 text-lg font-bold text-oro-oscuro">{formatearPrecio(obra.precio)}</p>
         ) : null}
 
         {conBotones ? (
           <div className="mt-4 flex flex-wrap gap-2.5">
             <BotonWhatsApp
-              mensaje={`Hola, me interesa la obra «${obra.titulo}» (${formatearPrecio(obra.precio)}). ¿Sigue disponible?`}
+              mensaje={`Hola, me interesa la obra «${obra.titulo}». ¿Sigue disponible?`}
             >
               Consultar
             </BotonWhatsApp>
-            <a
-              href={enlaceEmail(`Consulta por la obra «${obra.titulo}»`)}
-              className="btn-secundario"
-              aria-label={`Consultar por «${obra.titulo}» por email`}
-            >
-              <Mail className="size-5" /> Email
-            </a>
           </div>
         ) : null}
       </div>

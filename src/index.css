@@ -1,21 +1,39 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/fraunces';
+/* Fraunces "full": el archivo por defecto solo trae el eje de peso. Este trae
+   además opsz, SOFT y WONK, que son los que le dan el carácter hecho a mano. */
+@import '@fontsource-variable/fraunces/full.css';
 @import '@fontsource-variable/cabin';
+@import '@fontsource/raleway-dots';
 
 @theme {
   --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
   --font-sans: 'Cabin Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-puntos: 'Raleway Dots', 'Fraunces Variable', Georgia, serif;
 
-  /* Paleta "Nature Distilled": artesanal cálida, el arte es el protagonista */
-  --color-crema: #f5f0e1;
-  --color-marfil: #fffdf6;
-  --color-arena: #d4c4a8;
-  --color-terracota: #a85d3f;
-  --color-terracota-clara: #c67b5c;
-  --color-dorado: #d9a05b;
-  --color-oliva: #6b7b3c;
-  --color-tinta: #1c1917;
-  --color-tinta-suave: #292524;
+  /* Paleta tetrádica en torno al oro #ccbc33 (color principal).
+     Las variantes -oscuro/-claro existen por contraste: el oro y el jade puros
+     no son legibles como texto sobre blanco, y el índigo puro se pierde sobre
+     los fondos oscuros. El tono puro se reserva para rellenos y decoración. */
+  --color-oro: #ccbc33; /* principal */
+  --color-oro-claro: #dbcd57;
+  --color-oro-oscuro: #7a6f14; /* texto sobre blanco */
+  --color-jade: #33cc6f;
+  --color-jade-oscuro: #1e8a48;
+  --color-indigo: #3343cc;
+  --color-indigo-claro: #5c6ae0; /* índigo sobre fondo oscuro */
+  --color-magenta: #cc3390;
+  --color-magenta-oscuro: #a3236f;
+
+  /* Neutros */
+  --color-blanco: #ffffff;
+  --color-marfil: #f8f7f0;
+  --color-arena: #e0dcc4;
+  /* Solo para bordes: arena a opacidad parcial da 1.38:1 sobre blanco y las
+     tarjetas flotan sin definición. Este tono llega a ~1.67:1, suficiente para
+     que se lea el contorno sin competir con las obras. */
+  --color-arena-oscuro: #cfc9a8;
+  --color-tinta: #1a1b26;
+  --color-tinta-suave: #2b2c3a;
 
   --animate-girar-lento: girar-lento 120s linear infinite;
   --animate-latir: latir 3.2s ease-in-out infinite;
@@ -45,36 +63,91 @@
   }
 
   body {
-    @apply bg-crema font-sans text-tinta-suave antialiased;
+    @apply bg-blanco font-sans text-tinta-suave antialiased;
   }
 
+  /* SOFT redondea las terminaciones del trazo; WONK activa las alternantes
+     caligráficas (la g, la y, los remates que se van de la caja). Se suben solo
+     en los titulares: en texto pequeño WONK ensucia y SOFT se pierde. */
   h1,
   h2,
   h3,
   h4 {
     @apply font-display;
+    font-variation-settings:
+      'SOFT' var(--fraunces-soft, 0),
+      'WONK' var(--fraunces-wonk, 0);
+  }
+
+  h1,
+  h2 {
+    --fraunces-soft: 60;
+    --fraunces-wonk: 1;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-terracota;
+    @apply outline-2 outline-offset-2 outline-indigo;
   }
 
   ::selection {
-    @apply bg-terracota-clara/40;
+    @apply bg-oro/40;
   }
 }
 
 @layer components {
+  /* Raleway Dots solo existe en peso 400: pedir bold haría que el navegador
+     lo falsee y los puntos salgan dobles. */
+  .titulo-puntos {
+    font-family: var(--font-puntos);
+    font-weight: 400;
+  }
+
+  /* Relleno oro con tinta encima: el amarillo no admite texto blanco. */
   .btn-primario {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-terracota px-5 py-2.5 font-semibold text-marfil transition-colors duration-200 hover:bg-terracota-clara;
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-oro px-5 py-2.5 font-semibold text-tinta transition-colors duration-200 hover:bg-oro-claro;
   }
 
   .btn-secundario {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-terracota/50 px-5 py-2.5 font-semibold text-terracota transition-colors duration-200 hover:bg-terracota/10;
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-indigo/50 px-5 py-2.5 font-semibold text-indigo transition-colors duration-200 hover:bg-indigo/10;
   }
 
   .btn-secundario-oscuro {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-crema/40 px-5 py-2.5 font-semibold text-crema transition-colors duration-200 hover:bg-crema/10;
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-blanco/40 px-5 py-2.5 font-semibold text-blanco transition-colors duration-200 hover:bg-blanco/10;
+  }
+}
+
+/* Las obras vecinas asoman por los lados y el borde del carrusel las corta en
+   seco. Mostrarlas enteras obligaría a achicar la tarjeta central (mover el
+   carrusel), así que en su lugar se disuelven: el degradado deja el corte en
+   transparente. Los porcentajes se quedan siempre por fuera de la tarjeta
+   central, cuyo ancho cambia por breakpoint (88% / 66% / 50% del carrusel). */
+.carrusel-difuminado {
+  --corte: 5%;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 var(--corte),
+    #000 calc(100% - var(--corte)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 var(--corte),
+    #000 calc(100% - var(--corte)),
+    transparent 100%
+  );
+}
+
+@media (min-width: 40rem) {
+  .carrusel-difuminado {
+    --corte: 15%;
+  }
+}
+
+@media (min-width: 64rem) {
+  .carrusel-difuminado {
+    --corte: 23%;
   }
 }
 

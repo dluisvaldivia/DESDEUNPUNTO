@@ -37,7 +37,7 @@ export default function SobreLaArtista() {
           <img
             src={retratoArtista}
             alt={`Retrato de ${sitio.artista}`}
-            className="w-full rounded-2xl border border-arena/70 shadow-lg shadow-tinta/10"
+            className="w-full rounded-2xl border border-arena-oscuro shadow-lg shadow-tinta/10"
           />
         </Reveal>
         <Reveal retraso={120}>
@@ -56,29 +56,29 @@ export default function SobreLaArtista() {
             </p>
             <p>
               Cuando no está pintando, está enseñando a otros que cualquier cosa enorme — una obra,
-              un hábito, una vida — se construye igual: comenzando desde un punto.
+              un hábito, una vida — se construye igual: todo comienza con un punto.
             </p>
           </div>
         </Reveal>
       </section>
 
       {/* El proceso */}
-      <section className="bg-tinta text-crema">
+      <section className="bg-tinta text-blanco">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
           <Reveal className="text-center">
-            <h2 className="text-3xl text-crema sm:text-4xl">Así nace un mandala</h2>
+            <h2 className="text-3xl text-blanco sm:text-4xl">Así nace un mandala</h2>
           </Reveal>
           <div className="mt-12 grid gap-10 sm:grid-cols-3">
             {pasos.map((paso, i) => (
               <Reveal key={paso.numero} retraso={i * 130} className="text-center">
-                <p className="font-display text-5xl text-dorado">{paso.numero}</p>
-                <h3 className="mt-3 font-display text-2xl text-crema">{paso.titulo}</h3>
-                <p className="mt-3 leading-relaxed text-crema/75">{paso.texto}</p>
+                <p className="font-display text-5xl text-oro">{paso.numero}</p>
+                <h3 className="mt-3 font-display text-2xl text-blanco">{paso.titulo}</h3>
+                <p className="mt-3 leading-relaxed text-blanco/75">{paso.texto}</p>
               </Reveal>
             ))}
           </div>
           <Reveal className="mt-14 text-center">
-            <BotonWhatsApp mensaje="Hola, vi la página Desde un Punto y me encantaría conversar con la artista.">
+            <BotonWhatsApp mensaje="Hola, vi la página Todo comienza con un punto y me encantaría conversar con la artista.">
               Conversar con la artista
             </BotonWhatsApp>
           </Reveal>
